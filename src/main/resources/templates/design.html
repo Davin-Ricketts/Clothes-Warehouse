@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <title>Add Item to Stock</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 class="mb-4">Add Item to Stock</h1>
+      <form th:action="@{/stock/add}" th:object="${item}" method="post">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" th:field="*{name}" required />
+        </div>
+        <div class="form-group">
+          <label for="brand">Brand:</label>
+          <select class="form-control" th:field="*{brand}" required>
+            <option value="">Select a brand</option>
+            <option
+              th:value="${T(com.cpan228.clotheswarehouse.model.Item.Brand).BALENCIAGA}"
+            >
+              Balenciaga
+            </option>
+            <option
+              th:value="${T(com.cpan228.clotheswarehouse.model.Item.Brand).STONE_ISLAND}"
+            >
+              Stone Island
+            </option>
+            <option
+              th:value="${T(com.cpan228.clotheswarehouse.model.Item.Brand).DIOR}"
+            >
+              Dior
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="yearOfCreation">Year of Creation:</label>
+          <input
+            type="number"
+            class="form-control"
+            th:field="*{yearOfCreation}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input
+            type="number"
+            class="form-control"
+            th:field="*{price}"
+            min="1000"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Add to Stock</button>
+      </form>
+    </div>
+  </body>
+</html>
