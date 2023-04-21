@@ -2,6 +2,7 @@ package com.cpan228.clotheswarehouse.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class ItemController {
     }
 
     @GetMapping("/add-item")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('WAREHOUSE_EMPLOYEE')")
     public String addItemForm(Model model) {
         model.addAttribute("item", new Item());
         return "add-item";
